@@ -7,6 +7,6 @@ from loader import dp
 
 @dp.message_handler(commands='saysomethink')
 async def saysome(message: types.Message):
-    await message.answer(text='Життя дасть тобі те що ти хочеш, коли ти навишся жити щасливо без цього.')
+    await message.answer(text='Життя дасть тобі те що ти хочеш, коли ти навчишся жити щасливо без цього.')
 
 
