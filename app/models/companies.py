@@ -1,6 +1,5 @@
-from sqlalchemy import ForeignKey, String
-from sqlalchemy.orm import relationship, backref
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy import String, DateTime
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from . import Base
 
 class Company(Base):
@@ -14,6 +13,7 @@ class Company(Base):
     phone: Mapped['str'] = mapped_column()
     website: Mapped['str'] = mapped_column()
     users = relationship("User", back_populates="company")
-
+    jobs = relationship("Job", back_populates="company")
+    date_joined = mapped_column(DateTime)
 
 
