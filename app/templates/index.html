@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сторінка з фільтрами та карткою</title>
+    <!-- Підключення Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f0f0;
+        }
+
+        .card {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Назва сайту</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Основна сторінка</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Про нас</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Профіль</a>
+                    </li>
+                    <!-- Тут ще додамо -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Картка з контентом</h5>
+                        <!-- Тут буде картка вакансії, тоже треба буде зробити автоматично-->
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Фільтри</h5>
+                        <!-- Розгортаюча кнопка з варіантами -->
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                Сфера
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="#">IT </a></li>
+                                <li><a class="dropdown-item" href="#">Сфера 2</a></li>
+                                <li><a class="dropdown-item" href="#">Сфера 3</a></li>
+                                <!-- Тут фільтри, але їх треба зробити автоматичними  -->
+                            </ul>
+                        </div>
+                        <hr>
+                        <!-- Розгортаюча кнопка з варіантами -->
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                                Посада
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                                <li><a class="dropdown-item" href="#">Junior </a></li>
+                                <li><a class="dropdown-item" href="#">Middle </a></li>
+                                <li><a class="dropdown-item" href="#">Senior </a></li>
+                                <!-- Тут фільтри, але їх треба зробити автоматичними  -->
+                            </ul>
+                        </div>
+                        <hr>
+                        <!-- Розгортаюча кнопка з варіантами -->
+
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-expanded="false">
+                                Зарплата
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
+                                <li><a class="dropdown-item" href="#">1000% </a></li>
+                                <li><a class="dropdown-item" href="#">2500$ </a></li>
+                                <li><a class="dropdown-item" href="#">5000$ </a></li>
+                                <!-- Тут фільтри, але їх треба зробити автоматичними  -->
+                            </ul>
+                        </div>
+                        <hr>
+                        <!-- Розгортаюча кнопка з варіантами -->
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton4" data-bs-toggle="dropdown" aria-expanded="false">
+                                Компанія
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton4">
+                                <li><a class="dropdown-item" href="#">Компанія 1</a></li>
+                                <li><a class="dropdown-item" href="#">Компанія 2</a></li>
+                                <li><a class="dropdown-item" href="#">Компанія 3</a></li>
+                                <!-- Тут фільтри, але їх треба зробити автоматичними  -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Підключення Bootstrap JS та Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
