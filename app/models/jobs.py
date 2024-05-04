@@ -11,3 +11,8 @@ class Job(Base):
     company_id: Mapped['int'] = mapped_column(ForeignKey('companies.company_id'))
     company = relationship("Company", back_populates="jobs")
     applications = relationship("Application", back_populates="job")
+    category: Mapped['str'] = mapped_column()
+    experience: Mapped['int'] = mapped_column()
+    sphere: Mapped['str'] = mapped_column()
+    location: Mapped['str'] = mapped_column()
+    salary: Mapped['int'] = mapped_column()

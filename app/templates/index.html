@@ -19,17 +19,17 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Назва сайту</a>
+            <a class="navbar-brand" href="/">Назва сайту</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Основна сторінка</a>
+                        <a class="nav-link active" aria-current="page" href="/">Основна сторінка</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Про нас</a>
+                        <a class="nav-link" href="/about">Про нас</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Профіль</a>
@@ -42,35 +42,41 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-10">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Картка з контентом</h5>
-                        <!-- Тут буде картка вакансії, тоже треба буде зробити автоматично-->
-                    </div>
+           <div class="col-md-10">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Frontend Developer</h5>
+                    <p class="card-text">We are looking for a talented Frontend Developer to join our team.</p>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Location: New York, NY</li>
+                        <li class="list-group-item">Salary: $80,000 - $100,000 per year</li>
+                        <li class="list-group-item">Experience: 2+ years</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary">Learn More</a>
                 </div>
+            </div>
             </div>
             <div class="col-md-2">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Фільтри</h5>
                         <!-- Розгортаюча кнопка з варіантами -->
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                Сфера
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><a class="dropdown-item" href="#">IT </a></li>
-                                <li><a class="dropdown-item" href="#">Сфера 2</a></li>
-                                <li><a class="dropdown-item" href="#">Сфера 3</a></li>
-                                <!-- Тут фільтри, але їх треба зробити автоматичними  -->
-                            </ul>
-                        </div>
+
+                        <form method="post">
+                            <div class="form-group">
+                                <label class="form-label" for="Title">Категорії</label>
+                                <label class="form-label" for="category">
+                                    <input type="checkbox" value="IT">
+                                    IT
+                                </label>
+                            </div>
+                        </form>
+
                         <hr>
                         <!-- Розгортаюча кнопка з варіантами -->
                         <div class="dropdown">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-                                Посада
+                                Сфера
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
                                 <li><a class="dropdown-item" href="#">Junior </a></li>

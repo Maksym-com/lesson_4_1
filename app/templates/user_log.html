@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul>
+    {% for message in messages %}
+        <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+<form method="post">
+    {{ form.hidden_tag() }}
+    {{ form.login.label }} {{ form.login(size=20) }}
+    {{ form.password.label }} {{ form.password(size=20) }}
+    {{ form.submit }}
+</form>
+</body>
+</html>
