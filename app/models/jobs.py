@@ -8,7 +8,7 @@ class Job(Base):
     description: Mapped['str'] = mapped_column()
     requirements: Mapped['str'] = mapped_column()
     publication_date = mapped_column(DateTime)
-    company_id: Mapped['int'] = mapped_column(ForeignKey('companies.company_id'))
+    company_id: Mapped['int'] = mapped_column(ForeignKey('companies.id'))
     company = relationship("Company", back_populates="jobs")
     applications = relationship("Application", back_populates="job")
     category: Mapped['str'] = mapped_column()

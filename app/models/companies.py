@@ -4,7 +4,7 @@ from . import Base
 
 class Company(Base):
     __tablename__ = 'companies'
-    company_id: Mapped['int'] = mapped_column(primary_key=True)
+    id: Mapped['int'] = mapped_column(primary_key=True)
     name: Mapped['str'] = mapped_column(String(24), unique=True)
     email: Mapped['str'] = mapped_column(unique=True)
     password: Mapped['str'] = mapped_column(String(24))

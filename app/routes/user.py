@@ -17,12 +17,19 @@ def hash_password(password):
 @bp.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
+    print('1')
     if form.validate_on_submit():
+        print("2")
+        username = form.username.data
         name = form.name.data
         surname = form.surname.data
         email = form.email.data
         password = form.password.data
         age = form.age.data
+        error = form.password.errors
+        if error:
+            flash(error)
+            return redirect(url_for('user.register'))
         with Session() as session:
             if session.query(User).filter(User.email == email).first():
                 flash(f'Користувач з такою електронною адресою вже зареєстрований. Cпробуйте увійти.')
@@ -30,7 +37,7 @@ def register():
             else:
                 hashed_password = hash_password(password)
                 print(hashed_password)
-                new_user = User(name=name, last_name=surname, email=email, password=hashed_password, age=age, date_joined=datetime.datetime.now())
+                new_user = User(username=username, name=name, last_name=surname, email=email, password=hashed_password, age=age, date_joined=datetime.datetime.now())
                 session.add(new_user)
                 session.commit()
                 flash("Ви успішно зарєструвались.")

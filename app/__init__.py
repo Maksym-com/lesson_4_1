@@ -13,9 +13,10 @@ def create_app():
     login_manager.login_view = "login"
     login_manager.init_app(app)
 
-    from app.routes import default_bp, user_bp
+    from app.routes import default_bp, user_bp, company_bp
     app.register_blueprint(default_bp, url_prefix='/')
     app.register_blueprint(user_bp, url_prefix='/user')
+    app.register_blueprint(company_bp, url_prefix='/company')
 
     from app import models
     create_all()

@@ -10,5 +10,5 @@ class Resume(Base):
     work_experience: Mapped['str']
     skills: Mapped['str']
     education: Mapped['str']
-    user_id: Mapped['int'] = mapped_column(ForeignKey('users.user_id'))
+    user_id: Mapped['int'] = mapped_column(ForeignKey('users.id'))
     user = relationship("User", back_populates="resumes")
