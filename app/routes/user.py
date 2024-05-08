@@ -6,17 +6,19 @@ from flask_login import login_user
 
 from app.models import User
 from app.database import Session
-from app.forms import RegistrationForm, LoginForm
+from app.forms import RegistrationUserForm, LoginUserForm
 
 bp = Blueprint('user', __name__)
+
 
 def hash_password(password):
     hashed_password = hashlib.sha256(password.encode()).hexdigest()
     return hashed_password
 
+
 @bp.route('/register', methods=['GET', 'POST'])
 def register():
-    form = RegistrationForm()
+    form = RegistrationUserForm()
     print('1')
     if form.validate_on_submit():
         print("2")
@@ -27,9 +29,11 @@ def register():
         password = form.password.data
         age = form.age.data
         error = form.password.errors
+
         if error:
             flash(error)
             return redirect(url_for('user.register'))
+
         with Session() as session:
             if session.query(User).filter(User.email == email).first():
                 flash(f'Користувач з такою електронною адресою вже зареєстрований. Cпробуйте увійти.')
@@ -44,19 +48,27 @@ def register():
                 login_user(new_user)
                 return redirect(url_for('default.index'))
 
-
     return render_template("user_reg.html", form=form)
+
 
 @bp.route('/login', methods=['GET', 'POST'])
 def login():
-    form = LoginForm()
+    form = LoginUserForm()
     if form.validate_on_submit():
+        print("1")
         login = form.login.data
         password = form.password.data
         with Session() as session:
-            query = select(User).where(User.email == login or User.username == login)
-            user = session.scalars(query).one()
-            print(user)
+            query = select(User).where(User.username == login)
+            user = session.scalars(query).one_or_none()
+            print(query)
+            if user:
+                pass
+            else:
+                query = select(User).where(User.email == login)
+
+            user = session.scalars(query).one_or_none()
+            print(user.email, type(user.email))
             if user:
                 if user.password == hash_password(password):
                     login_user(user)
@@ -67,6 +79,7 @@ def login():
                     return redirect(url_for("user.login"))
 
             else:
-                flash("Такого користувача не існує. Перевірте електронну адресу.")
+                flash("Такого користувача не існує. Перевірте електронну адресу або логін.")
                 return redirect(url_for("user.login"))
+
     return render_template("user_log.html", form=form)
