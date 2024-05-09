@@ -2,6 +2,7 @@ from sqlalchemy import DateTime, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from . import Base
 
+
 class Job(Base):
     job_id: Mapped['int'] = mapped_column(primary_key=True)
     title: Mapped['str'] = mapped_column()
@@ -16,3 +17,4 @@ class Job(Base):
     sphere: Mapped['str'] = mapped_column()
     location: Mapped['str'] = mapped_column()
     salary: Mapped['int'] = mapped_column()
+    resume_need: Mapped['bool'] = mapped_column()

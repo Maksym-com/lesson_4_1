@@ -20,14 +20,14 @@ def hash_password(password):
 def register():
     form = RegistrationUserForm()
     print('1')
-    if form.validate_on_submit():
+    if request.method == 'POST' and form.validate_on_submit():
         print("2")
         username = form.username.data
         name = form.name.data
         surname = form.surname.data
         email = form.email.data
         password = form.password.data
-        age = form.age.data
+        age = form.birth_date.data
         error = form.password.errors
 
         if error:
@@ -54,24 +54,22 @@ def register():
 @bp.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginUserForm()
-    if form.validate_on_submit():
-        print("1")
+    if request.method == "POST" and form.validate_on_submit():
         login = form.login.data
         password = form.password.data
         with Session() as session:
             query = select(User).where(User.username == login)
             user = session.scalars(query).one_or_none()
-            print(query)
             if user:
                 pass
             else:
                 query = select(User).where(User.email == login)
 
             user = session.scalars(query).one_or_none()
-            print(user.email, type(user.email))
             if user:
                 if user.password == hash_password(password):
                     login_user(user)
+                    flash("Ви успішн увійшли!")
                     return redirect(url_for("default.index"))
 
                 else:

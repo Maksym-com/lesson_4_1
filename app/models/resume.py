@@ -2,6 +2,7 @@ from sqlalchemy import ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from . import Base
 
+
 class Resume(Base):
     resume_id: Mapped['int'] = mapped_column(primary_key=True)
     name: Mapped['str']

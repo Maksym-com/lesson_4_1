@@ -1,2 +1,2 @@
 from .user import RegistrationUserForm, LoginUserForm
-from .company import RegistrationCompanyForm
+from .company import RegistrationCompanyForm, LoginCompanyForm
