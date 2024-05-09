@@ -17,6 +17,7 @@ class Company(Base, UserMixin):
     website: Mapped['str'] = mapped_column(nullable=True)
     users = relationship("User", back_populates="company")
     jobs = relationship("Job", back_populates="company")
+    img: Mapped['str'] = mapped_column(nullable=True)
     date_joined = mapped_column(DateTime)
     is_active: Mapped['bool'] = mapped_column(default=True)
 
