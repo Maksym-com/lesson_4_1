@@ -33,4 +33,9 @@ def create_app():
         with Session() as session:
             return session.query(models.User).where(models.User.id == user_id).first()
 
+    @login_manager.user_loader
+    def load_company(company_id: int):
+        with Session() as session:
+            return session.query(models.Company).where(models.Company.id == company_id).first()
+
     return app

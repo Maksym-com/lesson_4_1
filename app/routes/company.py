@@ -2,12 +2,11 @@ import datetime, hashlib
 
 from flask import Blueprint, render_template, redirect, url_for, flash, request
 from sqlalchemy import select
-from flask_login import login_user
+from flask_login import login_user, current_user
 
-from app.models import Company
+from app.models import Company, Job
 from app.database import Session
-
-from app.forms import RegistrationCompanyForm, LoginCompanyForm
+from app.forms import RegistrationCompanyForm, LoginCompanyForm, AddJobForm
 
 bp = Blueprint('company', __name__)
 
@@ -59,19 +58,48 @@ def login():
             query = select(Company).where(Company.email == email)
             company = session.scalars(query).first()
 
-            if company:
-                hashed_password = hash_password(password)
-                if hashed_password == company.password:
-                    login_user(company, remember=remember)
-                    flash("Ви успішно увійшли!")
-                    return redirect(url_for('default.index'))
-                else:
-                    flash("Перевірте пароль!")
-                    return redirect(url_for('company.login'))
+            if company and company.password == hash_password(password):
+                login_user(company, remember=remember)
+                flash("Ви успішно увійшли!")
+                next_page = request.args.get('next')
+                return redirect(next_page or url_for('default.index'))
+            elif company:
+                flash("Перевірте пароль!")
             else:
                 flash("Перевірте електронну адресу!")
-                return redirect(url_for('company.login'))
 
     return render_template("company_log.html", form=form)
+@bp.route("/add_job", methods=["POST", "GET"])
+def add_job():
+    form = AddJobForm()
+    if current_user.is_authenticated:
+        if request.method == "POST" and form.validate_on_submit():
+            title = form.title.data
+            description = form.description.data
+            sphere = form.sphere.data
+            category = form.category.data
+            requirements = form.requirements.data
+            experience = form.experience.data
+            location = form.location.data
+            salary = form.salary.data
+            resume_need = form.resume_need.data
+            company_id = current_user.id
+
+            with Session() as session:
+                new_job = Job(title=title, description=description, sphere=sphere, category=category,
+                              requirements=requirements, experience=experience, location=location, salary=salary,
+                              resume_need=resume_need, publication_date=datetime.datetime.now(), company_id=company_id)
+                session.add(new_job)
+                session.commit()
+                flash("Нова вакансія додана!")
+                return redirect(url_for("default.index"))
+
+        return render_template("add_job.html", form=form)
+
+    else:
+        flash("Спочатку ввійдіть в акаунт!")
+        return redirect(url_for("company.login"))
+
+
 
 
